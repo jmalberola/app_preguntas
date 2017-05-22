@@ -7,7 +7,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  dades = [{
+  datos = [{
     "Room" : [ {
       "Content" : "Una encuensta sobre el nivel de estudio de una clase Universitaria.",
       "Preguntas" : [ {
@@ -106,6 +106,46 @@ export class HomePage {
 tipo = "radio";
 indice: number;
 
+preguntas : any[] = [ {
+  "encuesta" : {
+    "id" : 0,
+    "respuesta" : [ {
+      "id" : 0,
+      "texto" : "mal"
+    }, {
+      "id" : 1,
+      "texto" : "bien"
+    }, {
+      "id" : 2,
+      "texto" : "muy muy bien"
+    }, {
+      "id" : 3,
+      "texto" : "Sobresaliente"
+    } ],
+    "title" : "Satisfacicion sobre la asignatura"
+  },
+  "tipo" : "checkbox"
+}, {
+  "encuesta" : {
+    "id" : 1,
+    "respuesta" : [ {
+      "id" : 0,
+      "texto" : "Si"
+    }, {
+      "id" : 1,
+      "texto" : "No"
+    }, {
+      "id" : 2,
+      "texto" : "regular"
+    }, {
+      "id" : 3,
+      "texto" : "Aceptable"
+    } ],
+    "title" : "¿ Te has gustado el conocimiento?"
+  },
+  "tipo" : "respuesta corta"
+} ];
+
 //si no li dic any[], el ngfor no funciona perquè no detecta que és un array i tampoc deixa traure el length
 respuestas: any[] = [ {
   "id" : 0,
@@ -130,15 +170,17 @@ pin:string;
     //de l'element 1, anem a recorrer les preguntes començant per la 0
     this.indice = this.navParams.get('indice');
     this.tipo = this.navParams.get('tipo');
+
 }
 
-itemSelected($event,billete,val: string){
+itemSelected($event){
   let t = "radio";
+  let i = this.indice + 1;
   if(this.tipo == "radio")
     t="checkbox";
 
 			this.navCtrl.push(HomePage,{
-				'indice': this.indice,
+				'indice': i,
         'tipo': t
 			});
 	}

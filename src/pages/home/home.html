@@ -22,8 +22,12 @@
       </ion-item>
     </ion-list>
 
-    <button ion-item icon-right color="danger" (click)="itemSelected($event,indice)" >
+    <button *ngIf="indice < 1" ion-item icon-right color="danger" (click)="itemSelected($event)" >
     Siguiente
+    </button>
+
+    <button *ngIf="indice == 1" ion-item icon-right color="danger" (click)="itemSelected($event)" >
+    Finalizar
     </button>
 
 </ion-content>
