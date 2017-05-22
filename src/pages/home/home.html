@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list *ngIf="tipo == 'checkbox'">
+      <ion-item *ngFor="let item of respuestas">
+        <ion-label>{{item.texto}}</ion-label>
+        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="tipo == 'radio'">
+      <ion-item *ngFor="let item of respuestas">
+        <ion-label>{{item.texto}}</ion-label>
+        <ion-radio color="dark" checked="false"></ion-radio>
+      </ion-item>
+    </ion-list>
+
+    <button ion-item icon-right color="danger" (click)="itemSelected($event,indice)" >
+    Siguiente
+    </button>
+
+</ion-content>
