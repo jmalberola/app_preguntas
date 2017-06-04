@@ -144,7 +144,26 @@ preguntas : any[] = [ {
     "title" : "¿ Te has gustado el conocimiento?"
   },
   "tipo" : "respuesta corta"
-} ];
+},{"encuesta" : {
+  "id" : 0,
+  "respuesta" : [ {
+    "id" : 0,
+    "texto" : "mal"
+  }, {
+    "id" : 1,
+    "texto" : "bien"
+  }, {
+    "id" : 2,
+    "texto" : "muy muy bien"
+  }, {
+    "id" : 3,
+    "texto" : "Sobresaliente"
+  } ],
+  "title" : "Satisfacicion sobre la asignatura"
+},
+"tipo" : "select"
+}
+ ];
 
 //si no li dic any[], el ngfor no funciona perquè no detecta que és un array i tampoc deixa traure el length
 respuestas: any[] = [ {
@@ -161,6 +180,27 @@ respuestas: any[] = [ {
   "texto" : "Aceptable"
 } ];
 
+respuestas2: any[] = [ {
+  "id" : 0,
+  "texto" : "Triste"
+}, {
+  "id" : 1,
+  "texto" : "Feliz/contento/a"
+}, {
+  "id" : 2,
+  "texto" : "Abatido/a"
+}, {
+  "id" : 3,
+  "texto" : "Activo/a"
+}, {
+  "id" : 4,
+  "texto" : "Miserable"
+}, {
+  "id" : 5,
+  "texto" : "Alegre"
+}
+ ];
+
 pin:string;
 
   constructor(public navCtrl: NavController, private navParams: NavParams) {
@@ -168,22 +208,34 @@ pin:string;
     this.pin="1234";
     //recuperem a través del servei, l'element que toca, que és el 1
     //de l'element 1, anem a recorrer les preguntes començant per la 0
-    this.indice = this.navParams.get('indice');
+    this.indice = parseInt(this.navParams.get('indice'));
     this.tipo = this.navParams.get('tipo');
 
 }
 
 itemSelected($event){
+  console.log("i vale "+this.indice);
   let t = "radio";
-  let i = this.indice + 1;
+  var i:number;
+  i = this.indice+1;
+  console.log("i vale "+this.indice);
   if(this.tipo == "radio")
     t="checkbox";
+  if(this.tipo == "checkbox")
+    t="select";
 
 			this.navCtrl.push(HomePage,{
 				'indice': i,
         'tipo': t
 			});
 	}
+
+  finalizar($event){
+
+      console.log("Finalizamos");
+
+  }
+
 
 
 }

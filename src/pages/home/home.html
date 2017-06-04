@@ -22,11 +22,24 @@
       </ion-item>
     </ion-list>
 
-    <button *ngIf="indice < 1" ion-item icon-right color="danger" (click)="itemSelected($event)" >
+    <ion-list *ngIf="tipo == 'select'">
+      <ion-item *ngFor="let item of respuestas2">
+        <ion-label>{{item.texto}}</ion-label>
+        <ion-select>
+          <ion-option>Muy Poco/nada</ion-option>
+          <ion-option>Algo</ion-option>
+          <ion-option>Moderadamente</ion-option>
+          <ion-option>Bastante</ion-option>
+          <ion-option>Extramadamente</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <button *ngIf="indice < 2" ion-item icon-right color="danger" (click)="itemSelected($event)" >
     Siguiente
     </button>
 
-    <button *ngIf="indice == 1" ion-item icon-right color="danger" (click)="itemSelected($event)" >
+    <button *ngIf="indice == 2" ion-item icon-right color="danger" (click)="finalizar($event)" >
     Finalizar
     </button>
 
